@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "memu_test_func_app": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7065",
+      "launchBrowser": false
+    }
+  }
+}
