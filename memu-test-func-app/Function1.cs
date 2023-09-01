@@ -8,10 +8,25 @@ namespace memu_test_func_app
     public class Function1
     {
         private readonly ILogger _logger;
+        private readonly IHttpClientFactory _httpClientFactory;
+        private readonly IConfiguration _configuration;
 
-        public Function1(ILoggerFactory loggerFactory)
+        private String DataApi { get { return _configuration["DataApi"]; } }
+        private String MongoDbApi { get { return _configuration["MongoDbApi"]; } }
+
+        public Function1(ILoggerFactory loggerFactory, IHttpClientFactory httpClientFactory, IConfiguration configuration)
         {
+            _httpClientFactory = httpClientFactory;
+            _configuration = configuration;
             _logger = loggerFactory.CreateLogger<Function1>();
+        }
+
+        private HttpClient GetHttpClient
+        {
+            get
+            {
+                return _httpClientFactory.CreateClient();
+            }
         }
 
         [Function("Function1")]
